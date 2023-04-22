@@ -1,8 +1,8 @@
 ---
 title: Lab 02 – Learning Python
-author: [Estella Kinzel, Jonas Mantay, Jonas Trenkler]
+author: [Estella Kinzel, Jonas Trenkler]
 date: '2023-04-19'
-lang: 'en'
+lang: 'en-US'
 keywords: []
 output:
     pdf_document:
@@ -12,7 +12,7 @@ output:
 
 # Lab 02 – Learning Python
 
-Group: Estella Kinzel, Jonas Mantay, Jonas Trenkler
+Group: Estella Kinzel, Jonas Trenkler
 
 Repository: (https://github.com/JonasTrenkler/info3-lab02)[https://github.com/JonasTrenkler/info3-lab02]
 
@@ -21,8 +21,6 @@ Repository: (https://github.com/JonasTrenkler/info3-lab02)[https://github.com/Jo
 ### Topics and Issues
 
 Instance Creation, Estella: https://github.com/htw-imi-info3/python-learning/issues/10
-
-File Writing, Jonas M.: https://github.com/htw-imi-info3/python-learning/issues/6
 
 Dictionaries, Jonas T.: https://github.com/htw-imi-info3/python-learning/issues/7
 
