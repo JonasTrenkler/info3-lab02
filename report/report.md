@@ -1,7 +1,7 @@
 ---
 title: Lab 02 – Learning Python
 author: [Estella Kinzel, Jonas Trenkler]
-date: '2023-04-23'
+date: '2023-04-24'
 lang: 'en-US'
 keywords: [info3, list, python]
 output:
@@ -55,4 +55,87 @@ Out[33]: [4, 16, 36, 64, 100, 144, 196, 256, 324, 400]
 It took a while to figure out the lambda syntax, but the resulting list comprehensions were easier to read.
 Another thing to keep in mind is that the upper bound of range is exclusive, the lower one inclusive.
 
+The file `list_comprehensions.py` summarizes all the tested code and the comments document it.
 
+```python
+""" This file summarizes the list Comprehension part of lab2, part 2.
+The syntax is taken from the tutorial: https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions """
+
+list1 = []
+
+for i in range(1, 21):
+    list1.append(i)
+
+print("Careful with the `for i in range` syntax in python, \
+this has a side effect and creates a persisting variable, i:", i)
+print("list1:", list1)
+
+# approach using a function to square
+def square(x):
+    return x**2
+# the map function returns a 'map object' that can be cast to a list
+list_squares = list(map(square, range(1, 21)))
+print("list_squares:", list_squares)
+
+# it is possible to write this without defining the function square,
+# we can write this with an anonymous fuction, a lambda
+
+list_squares = list(map(lambda x: x**2, range(1, 21)))
+print("list_squares:", list_squares)
+
+# This is the basis for a List Comprehension which is basically just
+# a short form of the above, we leave out the lambda and map function.
+# It also uses square brackets, as when defining a list, instead of a cast
+# The keyword `in` is used to point to the mapping iterable
+
+list_squares = [x**2 for x in range(1, 21)]
+print("list_squares:", list_squares)
+
+# We can also filter the values with the keyword if, or iterate over more
+# than one variable. This can be thought of as nested loops and if statements
+
+list_even_squares = [x**2 for x in range(1, 21) if x**2 % 2 == 0]
+print("list_even_squares:", list_even_squares)
+
+# or using the list we created before as iterable, which seems more readable
+list_squares = [x**2 for x in range(1, 21)]
+list_even_squares = [x for x in list_squares if x % 2 == 0]
+print("list_even_squares:", list_even_squares)
+
+# x should not be defined at this point,
+# the above statements are all free of side effects
+try:
+    print(x)
+except NameError:
+    print("x is not defined here, List Comprehensions are free of side effects")
+
+# This is great for simpler lists, but might become less readable
+# if complex conditions are used, concatenated with `and`, `or` ...
+# In this case it might be useful to move the condition checks into a function.
+
+def complex_condition(x):
+    # do some precalculations here ... or use many different conditions or cases
+    # then apply complex condition, False is implicit when None is returned
+    if x <= 200 and x**2 % 2 == 0:
+        return True
+    elif x == 400:
+        return True
+
+list_squares = [x**2 for x in range(1, 21)]
+list_complex_filter = [x for x in list_squares if complex_condition(x)]
+print("list_complex_filter:", list_complex_filter)
+```
+
+Running the file results in the following output, proving everything works as expected:
+
+```
+Careful with the `for i in range` syntax in python, this has a side effect and creates a persisting variable, i: 20
+list1: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+list_squares: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400]
+list_squares: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400]
+list_squares: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400]
+list_even_squares: [4, 16, 36, 64, 100, 144, 196, 256, 324, 400]
+list_even_squares: [4, 16, 36, 64, 100, 144, 196, 256, 324, 400]
+x is not defined here, List Comprehensions are free of side effects
+list_complex_filter: [4, 16, 36, 64, 100, 144, 196, 400]
+```
