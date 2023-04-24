@@ -19,6 +19,7 @@ class File:
         name = os.getcwd()
         print(name)
 
+# alles ab hier in seperate class/main?
     filesList = []
     largeFiles = []
     sortedFilesList = []
