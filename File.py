@@ -26,12 +26,11 @@ class File:
     path = 'C:/Users/estel/OneDrive/Bilder/Screenshots**/*.png' #path example
 
     def printFilesList(self):
-        files = glob.glob(self.path,
-                          recursive=True)
-            for file in files:
-                # files.append(file)
-                filesList.append(file)
-                # print(file)
+        files = glob.glob(self.path, recursive=True)
+        for file in files:
+            # files.append(file)
+            filesList.append(file)
+            # print(file)
 
         print(filesList)
 
