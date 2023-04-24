@@ -20,7 +20,7 @@ Repository: <https://github.com/JonasTrenkler/info3-lab02>
 
 ### Topics and Issues
 
-Instance Creation, Estella: <https://github.com/htw-imi-info3/python-learning/issues/10> 
+Instance Creation, Estella: <https://github.com/htw-imi-info3/python-learning/issues/10>
 
 Dictionaries, Jonas T.: <https://github.com/htw-imi-info3/python-learning/issues/7>
 
@@ -138,4 +138,77 @@ list_even_squares: [4, 16, 36, 64, 100, 144, 196, 256, 324, 400]
 list_even_squares: [4, 16, 36, 64, 100, 144, 196, 256, 324, 400]
 x is not defined here, List Comprehensions are free of side effects
 list_complex_filter: [4, 16, 36, 64, 100, 144, 196, 400]
+```
+
+**2.** This part is still a WIP. 
+The class stores information about a file, the name, the path, the filesize.
+I could be extended to include the time the file was last changed or a hash of the file.
+The module `os` is used to retrieve the file information, based on the path.
+
+```python
+import os
+
+""" Class representing a File """
+class myFile:
+    def __init__(self, path):
+        self.path = path
+        # self.name = name
+        # self.size = size
+
+    def getSize(self):
+        size = os.stat(self.name)
+        print(size.st_size)
+
+    def getName(self):
+        name = os.getcwd()
+        print(name)
+
+```
+
+### Part 3: Finding large files
+
+Our program is still a WIP. When finished it should prompt for a path and retrieve files that exceed a certain file size.
+Together with other file stats, this is useful, for example to filter an image folder.
+
+```python
+import os
+import glob
+from myFile import myFile
+
+largeFiles = []
+sortedFilesList = []
+# path = 'C:/Users/estel/OneDrive/Bilder/Screenshots**/*.png' #path example
+
+def getFilesList(path):
+    return glob.glob(path, recursive=True)
+    # files = glob.glob(path, recursive=True)
+    # for file in files:
+    #     # files.append(file)
+    #     filesList.append(file)
+    #     # print(file)
+
+# def sortFilesList():
+#     for file in found_file_paths:
+#         if file.size >= 10.0:
+#             largeFiles.append(file)
+#             print(largeFiles)
+#         else:
+#             sortedFilesList.append(file)
+#             print(sortedFilesList)
+
+if __name__ == "__main__":
+    path = input("Enter a folder path: ")
+    
+    # overwrite default path for testing purposes
+    path = 'C:/Users/Jonas/Pictures/Wallpaper/**/*.png'
+    found_file_paths = getFilesList(path)
+    print(found_file_paths)
+    
+    filesList = []
+    for path in found_file_paths:
+        # print(type(path))
+        f = myFile(path)
+        filesList.append(f)
+
+    print(filesList[:3])
 ```
