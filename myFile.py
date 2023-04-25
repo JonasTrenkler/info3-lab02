@@ -10,10 +10,14 @@ class myFile:
 
     # ???
     def getSize(self):
-        size = os.stat(self.name)
-        print(size.st_size)
+        size = os.stat(self.path)
+        print(size.st_size/ (1024*1024))
+
+    # filesList = []
+    # largeFiles = []
+    # sortedFilesList = []
 
     # ???
-    def getName(self):
+""" def getName(self):
         name = os.getcwd()
-        print(name)
+        print(name)"""
