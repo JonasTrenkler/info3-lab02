@@ -64,4 +64,4 @@ if __name__ == "__main__":
             sortedFilesList.append(file)
             # print(sortedFilesList)
 
-    print('The files', largeFiles, 'is too big')
+    print('The files', largeFiles, 'are too big')
